@@ -1,0 +1,24 @@
+<div class="top-wrapper">
+  <div class="container">
+    <h1>Is this OK?</h1>
+
+    <%= form_with(model: @picture, url: pictures_path, local: true, method: 'post') do |form| %>
+      <h2><%= form.hidden_field :content %></h2>
+      <!-- 確認画面でアップロードした画像を表示させるための記述 -->
+      <%= image_tag(@picture.image.url, :size => "500x500") %>
+      <%= form.hidden_field :image_cache %><br>
+      <h2><%= @picture.content %></h2>
+      <br>
+      <%= form.submit  "投稿する", class: 'btn btn-primary' %>
+    <% end %>
+    
+    <%= form_with(model: @picture, url: new_picture_path, local: true, method: 'get') do |form| %>
+      <%= form.hidden_field :content %>
+      <%= form.hidden_field :image_cache %>
+      <%= form.submit "もどる", name: 'back', class: 'btn btn-secondary'%>
+    <% end %>
+    
+  </div>
+</div>
+
+  

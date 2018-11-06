@@ -1,0 +1,27 @@
+<div class="top-wrapper">
+  <div class="container">
+      <div class="content">
+        <h1>投稿詳細画面</h1>
+        <h4><%= image_tag(@picture.user.icon.url, :size => "50x50") %><%= @picture.user.name %></h4>
+        <%= image_tag @picture.image.url, :size => "500x500"%>
+        <h2><span><%= @picture.content %></span></h2>
+      <div>
+        <% unless @picture.user_id == current_user.id %>
+          <% if @favorite.present? %>
+            <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger'%>
+          <% else %>
+            <%= link_to 'お気に入りする', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-warning'%>
+          <% end %>
+        <% end %>
+        <br><%= link_to "もどる", pictures_path, class: 'btn btn-secondary' %>
+      </div>
+  </div>
+</div>
+  
+ <script>
+    $("#methods-test2").click(function(){
+    $(this).button('dispose').removeAttr('data-toggle');
+  });
+  </script>
+
+ 

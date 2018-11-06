@@ -1,0 +1,10 @@
+<div class="top-wrapper">
+  <div class="container">
+    <h1>ブログユーザー一覧</h1>
+    <ul class="row">
+    <% @users.each do |user| %>
+       <div class="col-sm-6 col-md-6"><%= link_to user.name, user_path(user.id) %></div> 
+    <% end %>
+    </ul>
+  </div>
+</div>

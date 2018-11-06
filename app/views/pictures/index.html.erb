@@ -1,0 +1,23 @@
+<div class="top-wrapper">
+    <div class="container">
+        <% @pictures.each do |picture| %>
+          <div class="content" valign="top">
+            <h1><%= image_tag(picture.user.icon.url, :size => "100x100") %><%= picture.user.name %></h1>
+            <%= image_tag(picture.image.url, :size => "500x500") %>
+            <div class="picture-links">
+              <%= link_to '詳細', picture_path(picture.id), class: 'btn btn-success' %>
+              <% if logged_in? %>
+                <% if picture.user_id == current_user.id %>
+                  <%= link_to '編集', edit_picture_path(picture.id), class: 'btn btn-warning' %>
+                  <%= link_to '削除', picture_path(picture.id), method: :delete ,data: { confirm: '本当に削除して宜しいいでしょうか？' }, class: 'btn btn-danger' %>
+                <% else %>
+                  
+                <% end %>
+              <% end %>
+              <h2><span><%= picture.content %></span></h2>
+            </div>
+          </div>
+          <br><br><br><br><br><br>
+        <% end %> 
+    </div>
+</div>

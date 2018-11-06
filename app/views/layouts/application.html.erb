@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link href="./font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <header>
+      <div class="contain">
+        <div class="header-left">
+              <div class="logo">
+                <i class="fa fa-instagram fa-large" aria-hidden="true"></i>
+                <div class="vertical"></div>
+                <span class="spellchild" aria-label="Instagram">instagram</span>
+              </div>
+        </div>
+        <div class="header-right clearfix">
+          <% if logged_in? %>
+            <div class="logout">
+              <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: "btn btn-secondary"%>
+            </div>
+            <div class="favorite">
+              <%= link_to "お気に入り", "/users/favorites/#{current_user.id}", class: "btn btn-secondary"%>
+            </div>
+            <div class="list">
+              <%= link_to "一覧",pictures_path, class: "btn btn-secondary"%>
+            </div>
+            <div class="mypage">
+              <%= link_to "MYページ", user_path(current_user.id), class: "btn btn-secondary" %>
+            </div>
+            <div class="new">
+                <%= link_to "新規投稿", new_picture_path, class: "btn btn-secondary" %>
+            </div>
+          <% else %>
+        </div>
+              <div class="registration">
+                <%= link_to "ユーザー登録", new_user_path, class: "btn btn-secondary"%>
+              </div>
+              <div class="login">
+                <%= link_to "ログイン", new_session_path, class: "btn btn-secondary" %>
+              </div>
+              <div class="new">
+                <%= link_to "新規投稿", new_picture_path, class: "btn btn-secondary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <%= yield %>
+    
+    
+  </body>
+</html>

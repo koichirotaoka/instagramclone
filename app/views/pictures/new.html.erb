@@ -1,0 +1,36 @@
+<div class="top-wrapper">
+      <div class="container">
+        <%= form_with(model: @picture, local: true ,url: choose_new_or_edit) do |form| %>
+          <% if @picture.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
+              <ul>
+                <% @picture.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          
+          <h2>新規投稿画面</h2><br>
+        
+          <div class="picture_title">
+            <%= form.label :"投稿内容" %>
+            <%= form.text_field :content %>
+          </div>
+          
+          <br>
+          
+          <div class="field">
+            <!-- 確認画面から新規作成画面に戻った時に、 -->
+            <!-- アップロードした画像を表示させるための記述 -->
+            <%= image_tag(@picture.image.url) if @picture.image.url %>
+            <%= form.file_field :image %>
+          </div>
+          
+          <br>
+          <%= form.submit  "投稿する" , class: 'btn btn-primary'%>
+        <% end %>
+        <%= link_to "もどる", pictures_path , class: 'btn btn-secondary'%>
+      </div>
+    </div>

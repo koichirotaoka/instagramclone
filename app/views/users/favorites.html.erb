@@ -1,0 +1,14 @@
+<div class="top-wrapper">
+  <div class="container">
+  <h1>お気に入り一覧</h1>
+    <% @favorite_pictures.each do |favorite| %>
+      <br>
+      <h1><%= image_tag(favorite.user.icon.url, :size => "100x100") %><%= favorite.user.name %></h1>
+      <%= image_tag(favorite.image.url, :size => "500x500") %>
+      <h2><span><%= favorite.content %></span></h2>
+      <br>
+    <% end %>
+  </div>
+</div>
+
+        

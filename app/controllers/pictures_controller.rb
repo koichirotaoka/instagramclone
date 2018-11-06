@@ -23,7 +23,6 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id 
     if @picture.save
-      PictureMailer.picture_mail(@picture).deliver  ##追記
       redirect_to pictures_path, notice: 'Complete！'
     else
       render 'new'
